@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QDOCINDEX>
+<INDEX url="http://doc.felgo.io/MyNotes" title="MyNotes Reference Documentation" version="Qt6.4.1" project="MyNotes">
+    <namespace name="" status="active" access="public" module="mynotes">
+        <qmlclass name="DataModel" qml-module-name="model" qml-base-type="QtQuick::Item" fullname="model.DataModel" href="qml-model-datamodel.html" status="active" access="public" documented="true" title="DataModel" fulltitle="DataModel" subtitle="" brief="This class provides list of the Notes created by user">
+            <function name="noteStored" fullname="model.DataModel.noteStored" href="qml-model-datamodel.html#noteStored-signal" status="active" access="public" location="DataModel.qml" filepath="D:/Projects/MyNotes/MyNotes/qml/model/DataModel.qml" lineno="43" documented="true" meta="qmlsignal" type="">
+                <parameter type="var" name="note" default=""/>
+            </function>
+            <qmlproperty name="dispatcher" fullname="model.DataModel.dispatcher" href="qml-model-datamodel.html#dispatcher-prop" status="active" access="public" documented="true" type="bool" attached="false" writable="true" brief="This property is used to configure target dispatcher"/>
+            <qmlproperty name="file" fullname="model.DataModel.file" href="qml-model-datamodel.html#file-prop" status="active" access="public" documented="true" type="string" attached="false" writable="false" brief="This property is used to hold the name of a json file"/>
+            <qmlproperty name="noteDetails" fullname="model.DataModel.noteDetails" href="qml-model-datamodel.html#noteDetails-prop" status="active" access="public" documented="true" type="bool" attached="false" writable="false" brief="This property is used to hold the map of notes"/>
+            <qmlproperty name="notesList" fullname="model.DataModel.notesList" href="qml-model-datamodel.html#notesList-prop" status="active" access="public" documented="true" type="bool" attached="false" writable="false" brief="This property is used to hold the array of notes"/>
+        </qmlclass>
+        <page name="how-to-make-the-app.html" href="how-to-make-the-app.html" status="active" location="MyNotes-index.qdoc" filepath="D:/Projects/MyNotes/MyNotes/qdoc/src/MyNotes-index.qdoc" lineno="67" documented="true" subtype="page" title="How to make MyNotes Application" fulltitle="How to make MyNotes Application" subtitle="" brief="Tutorial on how to create the app">
+            <contents name="introduction" title="Introduction" level="1"/>
+            <contents name="project-template" title="Project Template" level="1"/>
+            <contents name="notespage" title="NotesPage" level="1"/>
+            <contents name="notedetailpage" title="NoteDetailPage" level="1"/>
+            <contents name="datamodel" title="DataModel" level="1"/>
+            <contents name="main-qml" title="Main qml" level="1"/>
+            <contents name="where-to-go-from-here" title="Where to go from here" level="1"/>
+        </page>
+        <page name="MyNotes-index.html" href="mynotes-index.html" status="active" location="MyNotes-index.qdoc" filepath="D:/Projects/MyNotes/MyNotes/qdoc/src/MyNotes-index.qdoc" lineno="1" documented="true" subtype="page" title="MyNotes" fulltitle="MyNotes" subtitle="" brief="Capture notes quickly with MyNotes app. Write down whatever is in your mind and save it for future reference">
+            <contents name="description" title="Description" level="1"/>
+            <contents name="used-felgo-features" title="Used Felgo features" level="1"/>
+            <contents name="implementation" title="Implementation" level="1"/>
+            <contents name="files" title="Files" level="1"/>
+            <contents name="qml" title="Qml:" level="2"/>
+        </page>
+        <qmlclass name="NoteDetailPage" qml-module-name="pages" fullname="pages.NoteDetailPage" href="qml-pages-notedetailpage.html" status="active" access="public" documented="true" title="NoteDetailPage" fulltitle="NoteDetailPage" subtitle="" brief="This class provides the AppTextField for the notes to write">
+            <qmlproperty name="noteData" fullname="pages.NoteDetailPage.noteData" href="qml-pages-notedetailpage.html#noteData-prop" status="active" access="public" documented="true" type="var" attached="false" writable="true" brief="This property is used to hold the array of notes"/>
+            <qmlproperty name="noteId" fullname="pages.NoteDetailPage.noteId" href="qml-pages-notedetailpage.html#noteId-prop" status="active" access="public" documented="true" type="int" attached="false" writable="true" brief="This property is used to hold the id of the note being viewed"/>
+        </qmlclass>
+        <qmlclass name="NotesPage" qml-module-name="pages" fullname="pages.NotesPage" href="qml-pages-notespage.html" status="active" access="public" documented="true" title="NotesPage" fulltitle="NotesPage" subtitle="" brief="This class provides the GridView of the Notes created by user"/>
+        <qmlmodule name="model" qml-module-name="model" href="model-qmlmodule.html" status="active" location="MyNotesMainApplicationModule.qdoc" filepath="D:/Projects/MyNotes/MyNotes/qdoc/src/MyNotesMainApplicationModule.qdoc" lineno="11" documented="true" seen="true" title="Qml Components" brief="Qml Components module provides data model"/>
+        <qmlmodule name="pages" qml-module-name="pages" href="pages-qmlmodule.html" status="active" location="MyNotesMainApplicationModule.qdoc" filepath="D:/Projects/MyNotes/MyNotes/qdoc/src/MyNotesMainApplicationModule.qdoc" lineno="1" documented="true" seen="true" title="Qml Components" brief="Qml Components module provides UI views and controls"/>
+    </namespace>
+</INDEX>

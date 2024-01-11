@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+    <namespace>org.qt-project.myNotes.QT6.4.1</namespace>
+    <virtualFolder>myNotes</virtualFolder>
+    <metaData name="version" value="Qt6.4.1"/>
+    <filterSection>
+        <toc>
+            <section ref="mynotes-index.html" title="MyNotes">
+                <section ref="model-qmlmodule.html" title="Qml Components"/>
+            </section>
+        </toc>
+        <keywords>
+            <keyword name="DataModel" id="QML.DataModel" ref="qml-model-datamodel.html"/>
+            <keyword name="DataModel" id="QML.model.DataModel" ref="qml-model-datamodel.html"/>
+            <keyword name="How to make MyNotes Application" id="How to make MyNotes Application" ref="how-to-make-the-app.html"/>
+            <keyword name="MyNotes" id="MyNotes" ref="mynotes-index.html"/>
+            <keyword name="NoteDetailPage" id="QML.NoteDetailPage" ref="qml-pages-notedetailpage.html"/>
+            <keyword name="NoteDetailPage" id="QML.pages.NoteDetailPage" ref="qml-pages-notedetailpage.html"/>
+            <keyword name="NotesPage" id="QML.NotesPage" ref="qml-pages-notespage.html"/>
+            <keyword name="NotesPage" id="QML.pages.NotesPage" ref="qml-pages-notespage.html"/>
+            <keyword name="Qml Components" id="Qml Components" ref="model-qmlmodule.html"/>
+            <keyword name="Qml Components" id="Qml Components" ref="pages-qmlmodule.html"/>
+            <keyword name="dispatcher" id="DataModel::dispatcher" ref="qml-model-datamodel.html#dispatcher-prop"/>
+            <keyword name="file" id="DataModel::file" ref="qml-model-datamodel.html#file-prop"/>
+            <keyword name="noteData" id="NoteDetailPage::noteData" ref="qml-pages-notedetailpage.html#noteData-prop"/>
+            <keyword name="noteDetails" id="DataModel::noteDetails" ref="qml-model-datamodel.html#noteDetails-prop"/>
+            <keyword name="noteId" id="NoteDetailPage::noteId" ref="qml-pages-notedetailpage.html#noteId-prop"/>
+            <keyword name="noteStored" id="DataModel::noteStored" ref="qml-model-datamodel.html#noteStored-signal"/>
+            <keyword name="notesList" id="DataModel::notesList" ref="qml-model-datamodel.html#notesList-prop"/>
+        </keywords>
+        <files>
+            <file>how-to-make-the-app.html</file>
+            <file>images/app-screen-1.png</file>
+            <file>images/app-screen-2.png</file>
+            <file>images/app-screen-3.png</file>
+            <file>images/app-screen-4.png</file>
+            <file>model-qmlmodule.html</file>
+            <file>mynotes-index.html</file>
+            <file>pages-qmlmodule.html</file>
+            <file>qml-model-datamodel-members.html</file>
+            <file>qml-model-datamodel.html</file>
+            <file>qml-pages-notedetailpage-members.html</file>
+            <file>qml-pages-notedetailpage.html</file>
+            <file>qml-pages-notespage-members.html</file>
+            <file>qml-pages-notespage.html</file>
+            <file>style/cookie-confirm.css</file>
+            <file>style/cookiebar-x.png</file>
+            <file>style/doc_search.png</file>
+            <file>style/gsc.css</file>
+            <file>style/icomoon.eot</file>
+            <file>style/icomoon.svg</file>
+            <file>style/icomoon.ttf</file>
+            <file>style/icomoon.woff</file>
+            <file>style/list_arrow.png</file>
+            <file>style/list_expand.png</file>
+            <file>style/online.css</file>
+            <file>style/theqtcompany.png</file>
+        </files>
+    </filterSection>
+</QtHelpProject>
