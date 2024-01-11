@@ -3,7 +3,7 @@ import QtQuick
 
 /*!
     \qmltype NotesDetailPage
-    \inqmlmodule Qml-MyNotes
+    \inqmlmodule pages
     \inherits AppPage
     \brief This class provides the AppTextField for the notes to write.
 

@@ -2,7 +2,7 @@ import Felgo
 import QtQuick
 /*!
     \qmltype NotesPage
-    \inqmlmodule Qml-MyNotes
+    \inqmlmodule pages
     \inherits AppPage
     \brief This class provides the GridView of the Notes created by user.
 

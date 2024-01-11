@@ -1,0 +1,18 @@
+/*!
+   \qmlmodule pages
+   \title Qml Components
+
+   \brief The Qml Components module provides UI views and controls.
+
+   All the UI components are implemented using QtQuick controls. This page lists down the controls used in the App.
+   Check the documentation provided here to know more about the QtQuick.
+*/
+
+/*!
+   \qmlmodule model
+   \title Qml Components
+
+   \brief The Qml Components module provides data model.
+
+   Model data has been implemented in this module. Holding data, file operation etc. are handled in this module.
+*/

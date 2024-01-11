@@ -1,0 +1,403 @@
+/*!
+    \page MyNotes-index.html
+    \title MyNotes
+
+    \brief Capture notes quickly with MyNotes app. Write down whatever is in your mind and save it for future reference.
+
+    \section1 Description
+
+    The MyNotes provides below functionalities
+
+    \list
+    \li A quick way to write down what's on your mind.
+    \li Save the list notes.
+    \endlist
+
+    The MyNotes Application is an app which user can use to capture notes quickly with MyNotes app.
+
+    See the tutorial \l{How to make MyNotes Application} for step by step guide on how to create this app.
+
+    \table 100%
+    \row
+
+    \endtable
+
+    \endsection1
+
+
+    \section1 Used Felgo features
+        \list
+            \li \l{https://felgo.com/doc/felgo-app/} {App}: The top-level component of a Felgo application containing all other components.
+            \li \l{https://felgo.com/doc/felgo-navigation/}{Navigation}: A navigation control for using platform-specific navigation modes. 
+			\li \l{https://felgo.com/doc/felgo-navigationitem/}{NavigationItem}: Base type for items inside Navigation. 
+			\li \l{https://felgo.com/doc/felgo-navigationstack/}{NavigationStack}: Provides a stack of Pages with navigation.
+			\li \l{https://felgo.com/doc/felgo-apppage/}{AppPage}: A single page within an application. 
+			\li \l{https://felgo.com/doc/felgo-navigationbarrow/}{NavigationBarRow}: Container item to display multiple NavigationBarItems within a NavigationBar.
+			\li \l{https://felgo.com/doc/felgo-iconbuttonbaritem/}{IconButtonBarItem}: Displays a clickable AppIcon inside a NavigationBar slot. 
+			\li \l{https://felgo.com/doc/felgo-jsonlistmodel/}{JsonListModel}: A proxy view model for JSON data sources.
+			\li \l{https://felgo.com/doc/felgo-simplerow/}{SimpleRow}: A ListView delegate item with two labels and an optional image. 
+			\li \l{https://felgo.com/doc/felgo-floatingactionbutton/}{FloatingActionButton}: A material-design styled floating action button. 
+			\li \l{https://felgo.com/doc/felgo-apptextfield/}{AppTextField}: A single-line TextField input control. 
+			\li \l{https://felgo.com/doc/felgo-apptext/}{AppText}: A styled text control.
+			
+        \endlist
+    \endsection1
+
+    \section1 Implementation
+    the page \l{pages} and \l{model} provides information regarding the qml implementation.
+    \endsection1
+
+    \section1 Files    
+    \section2 Qml:
+    \list
+        \li \l{https://github.com/TaherLkdw/MyNotes/tree/master/MyNotes/qml/pages/NoteDetailPage.qml}{qml/pages/NoteDetailPage.qml}
+        \li \l{https://github.com/TaherLkdw/MyNotes/tree/master/MyNotes/qml/pages/NotesPage.qml}{qml/pages/NotesPage.qml}
+        \li \l{https://github.com/TaherLkdw/MyNotes/tree/master/MyNotes/qml/pages/SettingsPage.qml}{qml/pages/SettingsPage.qml}
+        \li \l{https://github.com/TaherLkdw/MyNotes/tree/master/MyNotes/qml/model/DataModel.qml}{qml/model/DataModel.qml}
+        \li \l{https://github.com/TaherLkdw/MyNotes/tree/master/MyNotes/qml/Main.qml}{qml/Main.qml}
+    \endlist
+    \endsection2
+
+    \endsection1
+*/
+
+/*!
+    \page how-to-make-the-app.html
+    \title How to make MyNotes Application
+
+    \brief Tutorial on how to create the app.
+
+    \section1 Introduction
+    In this tutorial I will strip up basic things like creating screens and implementing business logic to save json data.
+    This is an in-depth explanation of how to create the mechanics of the MyNotes app with Felgo.
+    It features Navigation, AppInputField, JsonListModel, GridView, multiple devices & aspect ratios support and property bindings, interact with json file.
+
+    We also provide the full source code of MyNotes made with Felgo on \l {https://github.com/TaherLkdw/MyNotes/tree/master} {GitHub}
+    \endsection1
+
+    \section1 Project Template
+    Clone/download project to your preferred destination and then open it with Qt Creator.
+    Let me first quickly show you the project structure:
+    All the .qml files are under /qml folder.
+
+    To create a project from scratch, first go to Felgo Qt creator and create a new sample app project.
+    This will create all the necessary files for all the platforms. Now on top of the existing project structur add new files and code according to your need.
+
+    \endsection1
+
+    \section1 NotesPage
+    Use the project tree to navigate to QML, this is where all the qml files are. Now create a new NotesPage qml file with the following content:
+
+    \qml
+        import Felgo
+        import QtQuick
+
+        AppPage {
+            id: page
+            title: qsTr("Notes") // use qsTr for strings you want to translate
+            backgroundColor: 'black'
+
+            rightBarItem: NavigationBarRow {
+
+                // add new note
+                IconButtonBarItem {
+                    iconType: IconType.gear
+                    showItem: showItemAlways
+                    onClicked: {
+                       page.navigationStack.popAllExceptFirstAndPush(settingsPage)
+                    }
+                }
+            }
+
+            // when a note is added, we open the detail page for it
+            Connections {
+                target: dataModel
+                onNoteStored: note => {
+                                  page.navigationStack.popAllExceptFirstAndPush(detailPageComponent, { noteId: note.id })
+                              }
+            }
+
+            // JsonListModel
+            // A ViewModel for JSON data that offers best integration and performance with list views
+            JsonListModel {
+                id: listModel
+                source: dataModel.notesList // show notes from data model
+                keyField: "id"
+                fields: ["id", "title", "note"]
+            }
+
+            // show sorted/filterd notes of data model
+            GridView {
+                id: listView
+                ...
+                // the model specifies the data for the list view
+                model: listModel
+
+                // the delegate is the template item for each entry of the list
+                delegate: SimpleRow {
+                    Rectangle {
+                        anchors.fill: parent
+                        color: 'transparent'
+                        border.color: 'orange'
+                    }
+
+                    height: listView.cellHeight - dp(3)
+                    width: listView.cellWidth - dp(3)
+                    text: model.title
+                    ...
+
+                    // push detail page when selected, pass chosen note id
+                    onSelected: page.navigationStack.popAllExceptFirstAndPush(detailPageComponent, { noteId: model.id })
+                }
+            }
+            FloatingActionButton {
+                visible: true
+                backgroundColor: 'black'
+                iconType: IconType.plus
+                iconColor: 'white'
+                onClicked: page.navigationStack.push(detailPageComponent)
+            }
+
+            // component for creating detail pages
+            Component {
+                id: detailPageComponent
+                NoteDetailPage { }
+            }
+
+            Component {
+                id: settingsPage
+                SettingsPage { }
+            }
+        }
+
+    \endqml
+
+    Here the \l{https://felgo.com/doc/felgo-apppage/}{AppPage}, \l{https://felgo.com/doc/felgo-iconbuttonbaritem/}{IconButtonBarItem}, \l{https://felgo.com/doc/felgo-jsonlistmodel/}{JsonListModel}, \l{https://felgo.com/doc/felgo-floatingactionbutton/}{FloatingActionButton}, GridView are added in the view.
+    Above copde showcases how to use the common components and implement the GridView. How the delegates are arranged in the view etc.
+    As seen from the code above the model is implemented in with \l{https://felgo.com/doc/felgo-jsonlistmodel/}{JsonListModel} and data is fetched using model roles.
+    On the click of the delegate NoteDetailPage is pushed in the stack which shows how navigation of qml is working.
+    On the settings button press event SettingsPage is pushed in the stack.
+
+    \endsection1
+
+    \section1 NoteDetailPage
+    After creating the GridView of notes, lets create a NotesDetailsPage to show the note. Create a new NotesDetailsPage qml file with the following content:
+
+    \qml
+    AppPage {
+        id: page
+
+        backgroundColor: 'black'
+
+        rightBarItem: NavigationBarRow {
+
+            // add new note
+            IconButtonBarItem {
+                iconType: IconType.save
+                showItem: showItemAlways
+                onClicked: {
+                   app.addNote(titleInput.text, noteInput.text)
+                   page.navigationStack.pop()
+                }
+            }
+        }
+
+
+        // target id
+        property int noteId: 0
+
+        // data property for page
+        property var noteData: dataModel.noteDetails[noteId]
+
+        // load data initially or when id changes
+        onNoteIdChanged: {
+            app.fetchNoteDetails(noteId)
+        }
+
+        // column to show all note object properties, if data is available
+        Column {
+            id: noteContainer
+            ...
+
+             AppTextField {
+                id: titleInput
+                text: noteData ? noteData.title : ""
+                placeholderText: "Title"
+                ...
+            }
+             AppTextField {
+                id: noteInput
+                text: noteData ? noteData.note : ""
+                placeholderText: "Write Here"
+                ...
+            }
+        }
+    }
+    \endqml
+
+    The above code shows the implementation of how the notes details view is arranged.
+    The notes can be edited and new notes can be added from this page. \l{https://felgo.com/doc/felgo-apptextfield/}{AppTextField} is used for getting user input.
+    On pressing the save button, page will be closed, and note will be saved in the file.
+    \endsection1
+
+    \section1 DataModel
+    Notes grid view need model to show data. This model is implemented by \l{https://felgo.com/doc/felgo-jsonlistmodel/}{JsonListModel} in NotesPage.
+    DataModel class is responsible to hold notes list and save notes in json file when user presses save button.
+    Notes are saved in a json file in app documents location. The read and write operation of a file is shown in below implementation:
+
+    \qml
+    Item {
+
+        // property to configure target dispatcher / logic
+        property alias dispatcher: logicConnection.target
+
+
+        // model data properties
+        readonly property alias notesList: _.notesList
+        readonly property alias noteDetails: _.noteDetails
+        readonly property string file: "Notes/notesData.json"
+
+        // action success signals
+        signal noteStored(var note)
+
+        // listen to actions from dispatcher
+        Connections {
+            id: logicConnection
+
+            // action 1 - fetchNoteList
+            onFetchNotesList: {
+                var fileName = FileUtils.storageLocation(FileUtils.DocumentsLocation, file)
+                var data = FileUtils.readFile(fileName)
+                if (data) {
+                    var jsonObj = JSON.parse(data)
+
+                    // check cached value first
+                    var list = jsonObj["notesList"]
+                    if(list) {
+                        _.notesList = list
+                    }
+
+                    _.noteDetails = jsonObj["notesMap"]
+                }
+
+            }
+
+            // action 2 - fetchnoteDetails
+            onFetchNoteDetails: id => {
+                                    var note = _.noteDetails[id]
+                                    if(note) {
+                                        noteDetailsChanged() // signal change within model to update UI
+                                    }
+                                }
+
+            // action 3 - storeNote
+            onStoreNote: note => {
+                                note.id = _.notesList.length + 1
+                                var jsonObj = {}
+                                jsonObj["notesMap"] = {}
+                                _.noteDetails[note.id] = note
+                                jsonObj.notesMap = _.noteDetails
+
+                                 // add new item to notesList
+                                 _.notesList.unshift(note)
+
+                                jsonObj["notesList"] = _.notesList
+
+                                // cache updated note list
+                                var fileContentAsString = JSON.stringify(jsonObj, null, "  ")
+                                var fileName = FileUtils.storageLocation(FileUtils.DocumentsLocation, file)
+                                var success = FileUtils.writeFile(fileName, fileContentAsString)
+                                notesListChanged()
+
+                                noteStored(note)
+                         }
+
+            // action 4 - clearCache
+            onClearCache: {
+                FileUtils.removeFile(file)
+            }
+        }
+
+        // private
+        Item {
+            id: _
+
+            // data properties
+            property var notesList: []  // Array
+            property var noteDetails: ({}) // Map
+        }
+    }
+    \endqml
+
+    \endsection1
+
+    \section1 Main qml
+
+    In main qml file finally instantiate above mentioned qml types we created.
+
+    \qml
+    App {
+        id: app
+        licenseKey: "<generate one from https://felgo.com/licenseKey>"
+
+        signal fetchNotesList()
+
+        signal fetchNoteDetails(int id)
+
+        signal storeNote(var note)
+
+        signal clearCache()
+
+        function addNote(title, note) {
+            var draft = {
+                note: note,
+                title: title
+            }
+
+            storeNote(draft)
+        }
+
+        Component.onCompleted: {
+            fetchNotesList()
+        }
+
+        DataModel {
+            id: dataModel
+            dispatcher: app
+        }
+
+        Navigation {
+            id: navigation
+            navigationMode: navigationModeNone
+
+            NavigationItem {
+                title: qsTr("MyNotes")
+                iconType: IconType.list
+
+                NavigationStack {
+                    id: navStackNotesPage
+                    splitView: tablet // use side-by-side view on tablets
+                    initialPage: NotesPage { }
+                    ...
+                }
+            }
+        }
+    }
+    \endqml
+
+    Here the code showcases how navigation component is used to instantiat and control the stack of views.
+    Notice the \l {https://felgo.com/doc/felgo-app}{App} component as the root component of the main qml.
+    It is a top-level component of a Felgo application containing all other components.
+
+    \note Add all the images and qml assests in resource.qrc files to bundle it inside app while publishing.
+
+    \endsection1
+
+    \section1 Where to go from here
+    Application development is a continous agile journey. There are many things we can add improve in this app.
+    First priority would be to solve the existing issues and then probably add new features.
+    Apart from above listed issues if anything new is found please add it here in the repo: \l{https://github.com/TaherLkdw/MyNotes/issues}{Issues}
+
+    \endsection1
+
+*/

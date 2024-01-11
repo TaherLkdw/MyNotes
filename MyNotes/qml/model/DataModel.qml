@@ -1,6 +1,18 @@
 import QtQuick
 import Felgo
 
+/*!
+    \qmltype DataModel
+    \inqmlmodule model
+    \inherits Item
+    \brief This class provides list of the Notes created by user.
+
+    This class can be instantiated as shown below:
+    \qml
+         DataModel { }
+    \endqml
+*/
+
 Item {
 
     /*!

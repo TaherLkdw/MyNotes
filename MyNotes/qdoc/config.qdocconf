@@ -1,0 +1,55 @@
+includepaths = . \
+           .. \
+           ../.. \
+           ./includes \
+           $QT_INSTALL_HEADERS \
+           $QT_INSTALL_HEADERS/QtCore \
+           $QT_INSTALL_HEADERS/QtGui \
+           $QT_INSTALL_HEADERS/QtQuick \
+           $QT_INSTALL_DOCS
+
+indexes = $QT_INSTALLED_DOCS/qtcore/qtcore.index \
+            $QT_INSTALLED_DOCS/qtqml/qtqml.index \
+            $QT_INSTALLED_DOCS/qtquick/qtquick.index \
+            $QT_INSTALLED_DOCS/qtdoc/qtdoc.index
+
+include($QT_INSTALLED_CONFIG/global/qt-module-defaults-online.qdocconf)
+include($QT_INSTALLED_CONFIG/config/exampleurl-qtbase.qdocconf)
+
+defines += qt6
+depends += \
+   qtcore \
+   qtqml \
+   qtquick \
+   qtdoc
+
+project = MyNotes
+version = $QT_VERSION
+url = http://doc.felgo.io/MyNotes
+qhp = true
+qhp.projects            = MyNotes
+qhp.MyNotes.file                = myNotes.qhp
+qhp.MyNotes.namespace           = org.qt-project.myNotes.$QT_VERSION_TAG
+qhp.MyNotes.virtualFolder       = myNotes
+qhp.MyNotes.indexTitle          = MyNotes
+qhp.MyNotes.indexRoot           =
+
+
+qhp.MyNotes.subprojects         = qmls
+qhp.MyNotes.subprojects.qmls.title = Qml Components
+qhp.MyNotes.subprojects.qmls.indexTitle = Qml Components
+qhp.MyNotes.subprojects.qmls.selectors = class fake:headerfile
+qhp.MyNotes.subprojects.qmls.sortPages = true
+
+headers.fileextensions  = "*.h *.hpp"
+sources.fileextensions  = "*.cpp *.qml *.qdoc"
+outputdir = ../Docs/
+imagedirs = images
+headerdirs  = . ../
+sourcedirs  = . \
+		./src \
+                ../
+		
+
+navigation.homepage  = MyNotes-index.html
+navigation.hometitle = "MyNotes"
