@@ -9,18 +9,18 @@ find_package(Felgo REQUIRED)
 
 # Project identifier and version
 # More information: https://felgo.com/doc/felgo-publishing/#project-configuration
-set(PRODUCT_IDENTIFIER "com.yourcompany.wizardEVAP.MyNotes")
+set(PRODUCT_IDENTIFIER "com.lkdw.application.MyNotes")
 set(PRODUCT_VERSION_NAME "1.0.0")
 set(PRODUCT_VERSION_CODE 1)
 
 # Set either "test" or "publish" stage:
-set(PRODUCT_STAGE "test")
+set(PRODUCT_STAGE "publish")
 
 # Optionally set a license key that is used instead of the license key from
 # main.qml file (App::licenseKey for your app or GameWindow::licenseKey for your game)
 # Only used for local builds and Felgo Cloud Builds (https://felgo.com/cloud-builds)
 # Not used if using Felgo Live
-set(PRODUCT_LICENSE_KEY "")
+set(PRODUCT_LICENSE_KEY "2AE5C76740FEA334306FCC403665578909970023E8F80A83CE94BC56492FAD169FE92A966F4C61B75580B14F1412D611860CA682C37595E02285EC308637B4E3D6422641173720933F27E2E286166B77FF8ED11AA3D7506892FE7CDB5D2D10AA6B91425F7F2F65F7930F631235E094A435167BFF7E740330712DBAA90D7E934B3CC966170EAB3D5D5769746CD8C2D278496B66D2DBE6086FFC81E01DFFCF6FA5FC09DF41475521F83E2956BF31ED0EC6B29EA2BA59A871866BF8D4EAB5995CFD8AB33964AF46935E523B53A7873B4741E592952D798B11996AF38AA0E32EBCC8289AAEC87AB5A257D4499FB0AAF3C1D0768109B3AA838DDBC599C4495AE6E2E6378B146D23C35720B535C26F60650C190F0444F2E23CBC9446D93A5D5F7829719CDFBAB640CC97AAE66AB4A1B7C3201D")
 
 set(FELGO_PLUGINS
 )
@@ -42,15 +42,15 @@ felgo_configure_executable(appMyNotes)
 
 # Deploy resources to build folder/package directly
 # comment for publishing
-deploy_resources("${QmlFiles};${AssetsFiles}")
+#deploy_resources("${QmlFiles};${AssetsFiles}")
 
 # Add QML files and resources to QML module to included them via QRC automatically:
 qt_add_qml_module(appMyNotes
     URI MyNotes
     VERSION 1.0
 # uncomment for publishing:
-#    QML_FILES ${QmlFiles}
-#    RESOURCES ${AssetsFiles}
+    QML_FILES ${QmlFiles}
+    RESOURCES ${AssetsFiles}
     NO_RESOURCE_TARGET_PATH
 )
 

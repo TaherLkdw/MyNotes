@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/model/DataModel.qml</file>
+        <file>qml/pages/NotesPage.qml</file>
+        <file>qml/pages/NoteDetailPage.qml</file>
+        <file>qml/pages/SettingsPage.qml</file>
+        <file>qml/Main.qml</file>
+    </qresource>
+</RCC>
